@@ -1,6 +1,6 @@
 #Motherlode
 
-##Devopment Tool Chain (Ubuntu Linux)
+##Development Tool Chain (Windows)
 This section contains links and information pertaining to the tools we are using on this project.
 
 ###Remarkable Markdown Editor
@@ -13,46 +13,14 @@ PyCharm is a full-featured Python IDE.  You can download it from  [JetBrains' we
 ###Git
 We use [Github](https://github.com/patdaburu/Motherlode) for source control.  You can download Git tools at the [Github Desktop](https://desktop.github.com) page.
 
-On Ubuntu, you can use `apt-get`.
+###PostgreSQL 9.5 and PostGIS 2.2
 
-```sh
-sudo apt-get update
-sudo apt-get install git
-```
-
-###PostgreSQL 9.5 and PostGIS 2.2 (Ubuntu Linux 16.04 LTS)
+(Note: This part of the document is a sketch.  Installing on Windows is a little trickier than Linux, so we're working out the simple instruction set.)
 
 ####Install PostgreSQL
-On Ubuntu 16.04 you can use `apt-get` to install PostgreSQL.
 
-```sh
-sudo apt-get update
-sudo apt-get install -y postgresql postgresql-contrib
-```
+http://www.bostongis.com/PrinterFriendly.aspx?content_name=postgis_tut01
 
-####Install PostgreSQL (Windows)
-You can download PostgreSQL for any supported platform from the [project download page](https://www.postgresql.org/download/).
-
-1. Download the installer and run it.
-2. Use StackBuilder to install the PostGIS stack.
-3. Add postgres.exe to the path.
-
-#####Add the PostgreSQL `bin` Directory to Your Path (Optional)
-While it's not absolutely necessary to do so, adding the PostgreSQL `bin` directory to your `%PATH` variable makes it a lot simpler to run commands.  (Also, the rest of this document refers to PostgreSQL application without specifying the path.)
-It's here on a default install: C:\Program Files\PostgreSQL\9.6\bin
-
-####Create the Mother User and Database
-```sh
-sudo -u postgres createuser -P mother
-sudo -u postgres createdb -O mother mother
-```
-For more information on the [createuser](https://www.postgresql.org/docs/devel/static/app-createdb.html) and [createdb](https://www.postgresql.org/docs/devel/static/app-createdb.html) client applications, check out the [PostgreSQL Client Applications](https://www.postgresql.org/docs/devel/static/app-createdb.html) reference page.
-
-For development, we use the password _'mary'_ as the default for the mother user.
-
-###PostgreSQL 9.5 and PostGIS 2.2 (Windows)
-
-####Install PostgreSQL (Windows)
 You can download PostgreSQL for any supported platform from the [project download page](https://www.postgresql.org/download/).
 
 http://www.bostongis.com/PrinterFriendly.aspx?content_name=postgis_tut01
@@ -67,11 +35,9 @@ While it's not absolutely necessary to do so, adding the PostgreSQL `bin` direct
 It's here on a default install: C:\Program Files\PostgreSQL\9.6\bin
 
 ####Create the Mother User and Database
-```sh
-postgres createuser -P mother
-postgres createdb -O mother mother
-```
-For more information on the [createuser](https://www.postgresql.org/docs/devel/static/app-createdb.html) and [createdb](https://www.postgresql.org/docs/devel/static/app-createdb.html) client applications, check out the [PostgreSQL Client Applications](https://www.postgresql.org/docs/devel/static/app-createdb.html) reference page.
+
+...used PgAdmin for this
+
 
 For development, we use the password _'mary'_ as the default for the mother user.
 
@@ -82,53 +48,39 @@ psql -h localhost -U mother mother
 To exit, type `- \q`
 
 ####Add PostGIS 2.2 Support to the Database
-```sh
-sudo apt-get install -y postgis postgresql-9.5-postgis-2.2
-sudo -u postgres psql -c "CREATE EXTENSION postgis; CREATE EXTENSION postgis_topology;" mother
-```
+The PostGIS Bundle was installed from the Stack Builder.
 
 ####Install pgAdmin
+
+(pgAdmin was installed when we installed Postgres.)
+
 While it's not required, [pgAdmin](https://www.pgadmin.org) is an extremely helpful GUI tool for managing PostgreSQL.
 
 You can [download](https://www.pgadmin.org/download/) installers for the supported platforms, or on Ubuntu you can use `apt-get`.
-```sh
-sudo apt-get install pgadmin3
-```
+
 
 ####Connect pgAdmin to the Mother Database
+
+On Windows, this seems to be set up already.
+
 1. Open pgAdmin.
 2. Click _Add a connection to a server._
 3. More information coming soon...
 
 ###Python Setup
+
+For better compatibility with ESRI's [arcpy](http://pro.arcgis.com/en/pro-app/arcpy/get-started/what-is-arcpy-.htm) libraries, this project presently targets [Python 2.7](https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi), which you can get from the [Python download page](https://www.python.org/downloads/), or if you have ArcMap or ArcGIS Pro installed on your computer, you can use ESRI's Python interpreter.
+
+In any case, you should consider adding the Python interpreter to your `%PATH` variable.  This document assumes that when you run commands like `pip`, you are referring to the location of the interpreter you're using with Motherlode.
+
 #### Installing and Upgrading `pip` for Python 2.7
 `pip` is the preferred Python package manager.  You can get more information about installing and upgrading pip [here](https://packaging.python.org/installing/).
 
+`pip` is installed by default with the [installer](https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi) from python.org.
 
-On Ubuntu, you can install `pip` from using `apt-get`.
-```sh
-sudo apt-get install python-pip
-```
+If you have multiple version of Python installed, you should consider adding the `Scripts` directory (where `pip` lives) for the one you are using with the Motherlode project to your `%PATH%` variable.  The rest of this document assumes that when you run `pip` you are doing so from the correct location.
 
-You can use `pip` itself to update installed version.
-```sh
-pip install -U pip setuptools
-```
-
-You may see a notification indicating that there is a newer version of `pip` to which you can upgrade.
-```sh
-pip install --upgrade pip
-```
-
-<!--
-#### Installing and Upgrading `pip` for Python 3
-`pip` is the preferred Python package manager.  You can get more information about installing and upgrading pip [here](https://packaging.python.org/installing/).
-
-
-On Ubuntu, you can install `pip` from using `apt-get`.
-```sh
-sudo apt-get install python3-pip
-```
+Run `pip` from a command line with administrator privileges.
 
 You can use `pip` itself to update installed version.
 ```sh
@@ -140,27 +92,22 @@ You may see a notification indicating that there is a newer version of `pip` to 
 pip install --upgrade pip
 ```
 
-On Ubuntu, `pip` for Python 3 installs into `/usr/lib/python3/dist-packages/pip`.
--->
+
 
 ###GeoAlchemy2
 [GeoAlchemy2](http://geoalchemy-2.readthedocs.io/en/latest/) is an object-relational mapper (ORM) for Python and PostGIS.  You can install it using `pip`.
 
 ####Install GeoAlchemy2 Dependencies
-#####libpq-dev
-We need the header files and static library for compiling C programs to work with the libqp library in order to communicate with a PostgreSQL database backend.
-```sh
-sudo apt-get install libpq-dev
-```
+
 #####psycopg2
 [Psycopg](http://initd.org/psycopg/) is a PostgreSQL adapter for the Python programming language. 
 ```sh
-sudo pip install psycopg2
+pip install psycopg2
 ```
 
 #####Now We Can Install GeoAlchemy2
 ```sh
-sudo pip install geoalchemy2
+pip install geoalchemy2
 ```
 The GeoAlchemy2 project has a couple of [tutorials](http://geoalchemy-2.readthedocs.io/en/latest/#tutorials) you can use to get started if you're new to the library. 
 
@@ -169,15 +116,21 @@ The GeoAlchemy2 project has a couple of [tutorials](http://geoalchemy-2.readthed
 
 Have a look at the [numpy quickstart tutorial](https://docs.scipy.org/doc/numpy-dev/user/quickstart.html) to get stared.
 ```sh
-sudo pip install numpy
+pip install numpy
 ```
 
 ###Shapely
 [Shapely](https://pypi.python.org/pypi/Shapely) is a BSD-licensed Python package for manipulation and analysis of planar geometric objects. It is based on the widely deployed GEOS (the engine of PostGIS) and JTS (from which GEOS is ported) libraries.
 
-For more information, check out the [Shapely manual](https://toblerity.org/shapely/manual.html).
+You can install Shapely from a Python [wheel](http://pythonwheels.com/) from [this website](http://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely).
 
-To install Shapely on Ubuntu, you can use `pip`.
-```sh
-sudo pip install shapely[vectorized]==1.6b2
-```
+On Windows 10, using the latest Windows installer from python.org, the `Shapely‑1.5.17‑cp27‑cp27m‑win32.whl` wheel did the trick.
+
+<!--
+You can install shapely from a wheel package at http://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely
+You probably want Shapely‑1.5.17‑cp27‑cp27m‑win32.whl (<--this one worked with Python 2.7 from python.org) or Shapely‑1.5.17‑cp27‑cp27m‑win_amd64.whl
+-->
+
+You can get more information about installing Shapely from the project's [download page](https://pypi.python.org/pypi/Shapely#downloads).
+
+To learn all about Shapely, check out the [Shapely manual](https://toblerity.org/shapely/manual.html).
