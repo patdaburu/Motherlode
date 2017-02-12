@@ -1,6 +1,6 @@
 #Motherlode
 
-##Devopment Tool Chain (Ubuntu Linux)
+##Devopment Tool Chain (Ubuntu Linux 16.04 LTS)
 This section contains links and information pertaining to the tools we are using on this project.
 
 ###Remarkable Markdown Editor
@@ -20,7 +20,7 @@ sudo apt-get update
 sudo apt-get install git
 ```
 
-###PostgreSQL 9.5 and PostGIS 2.2 (Ubuntu Linux 16.04 LTS)
+###PostgreSQL 9.5 and PostGIS 2.2 
 
 ####Install PostgreSQL
 On Ubuntu 16.04 you can use `apt-get` to install PostgreSQL.
@@ -30,17 +30,6 @@ sudo apt-get update
 sudo apt-get install -y postgresql postgresql-contrib
 ```
 
-####Install PostgreSQL (Windows)
-You can download PostgreSQL for any supported platform from the [project download page](https://www.postgresql.org/download/).
-
-1. Download the installer and run it.
-2. Use StackBuilder to install the PostGIS stack.
-3. Add postgres.exe to the path.
-
-#####Add the PostgreSQL `bin` Directory to Your Path (Optional)
-While it's not absolutely necessary to do so, adding the PostgreSQL `bin` directory to your `%PATH` variable makes it a lot simpler to run commands.  (Also, the rest of this document refers to PostgreSQL application without specifying the path.)
-It's here on a default install: C:\Program Files\PostgreSQL\9.6\bin
-
 ####Create the Mother User and Database
 ```sh
 sudo -u postgres createuser -P mother
@@ -49,22 +38,6 @@ sudo -u postgres createdb -O mother mother
 For more information on the [createuser](https://www.postgresql.org/docs/devel/static/app-createdb.html) and [createdb](https://www.postgresql.org/docs/devel/static/app-createdb.html) client applications, check out the [PostgreSQL Client Applications](https://www.postgresql.org/docs/devel/static/app-createdb.html) reference page.
 
 For development, we use the password _'mary'_ as the default for the mother user.
-
-###PostgreSQL 9.5 and PostGIS 2.2 (Windows)
-
-####Install PostgreSQL (Windows)
-You can download PostgreSQL for any supported platform from the [project download page](https://www.postgresql.org/download/).
-
-http://www.bostongis.com/PrinterFriendly.aspx?content_name=postgis_tut01
-
-1. Download the installer and run it.
-(Used the password 'postgres' for the postgres user.)
-2. Use StackBuilder to install the PostGIS stack.
-3. Add postgres.exe to the path.
-
-#####Add the PostgreSQL `bin` Directory to Your Path (Optional)
-While it's not absolutely necessary to do so, adding the PostgreSQL `bin` directory to your `%PATH` variable makes it a lot simpler to run commands.  (Also, the rest of this document refers to PostgreSQL application without specifying the path.)
-It's here on a default install: C:\Program Files\PostgreSQL\9.6\bin
 
 ####Create the Mother User and Database
 ```sh
