@@ -54,6 +54,8 @@ psql -h localhost -U mother mother
 ```
 To exit, type `- \q`
 
+A helpful PostgreSQL quickstart tutorial is available at [the PostgeSQL wiki](https://wiki.postgresql.org/wiki/First_steps).
+
 ####Add PostGIS 2.2 Support to the Database
 ```sh
 sudo apt-get install -y postgis postgresql-9.5-postgis-2.2
@@ -154,3 +156,12 @@ To install Shapely on Ubuntu, you can use `pip`.
 ```sh
 sudo pip install shapely[vectorized]==1.6b2
 ```
+
+####measurement
+https://pypi.python.org/pypi/measurement
+
+####measurement
+https://pypi.python.org/pypi/measurement
+
+####pytest
+http://doc.pytest.org/en/latest/

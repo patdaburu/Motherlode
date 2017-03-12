@@ -47,6 +47,9 @@ psql -h localhost -U mother mother
 ```
 To exit, type `- \q`
 
+A helpful PostgreSQL quickstart tutorial is available at [the PostgeSQL wiki](https://wiki.postgresql.org/wiki/First_steps).
+
+
 ####Add PostGIS 2.2 Support to the Database
 The PostGIS Bundle was installed from the Stack Builder.
 
@@ -134,3 +137,9 @@ You probably want Shapely‑1.5.17‑cp27‑cp27m‑win32.whl (<--this one worke
 You can get more information about installing Shapely from the project's [download page](https://pypi.python.org/pypi/Shapely#downloads).
 
 To learn all about Shapely, check out the [Shapely manual](https://toblerity.org/shapely/manual.html).
+
+####measurement
+https://pypi.python.org/pypi/measurement
+
+####pytest
+http://doc.pytest.org/en/latest/
