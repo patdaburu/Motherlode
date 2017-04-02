@@ -15,4 +15,3 @@ GDAL-2.1.3.win-amd64-py3.3.msi
 
 
 
--f PostgreSQL PG:"host='localhost' port='5432' dbname='mother' user='mother' password='mother'" "C:\Users\pblair\Documents\MotherGeo\File Geodatabases\Stearns County MN\Stearns County MN.gdb" -lco SCHEMA=staging -overwrite -progress --config PG_USE_COPY YES
